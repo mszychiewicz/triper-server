@@ -1,7 +1,7 @@
 package io.github.mszychiewicz.triperserver.api;
 
-import io.github.mszychiewicz.triperserver.api.dto.CreateTripRequest;
-import io.github.mszychiewicz.triperserver.api.dto.TripResponse;
+import io.github.mszychiewicz.triperserver.api.request.CreateTripRequest;
+import io.github.mszychiewicz.triperserver.api.response.TripResponse;
 import io.github.mszychiewicz.triperserver.domain.Trip;
 import io.github.mszychiewicz.triperserver.domain.TripService;
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public class TripController {
 
   @GetMapping("/{id}")
   public @ResponseBody
-  TripResponse getById(@PathVariable("id") UUID id) {
+  TripResponse getById(@PathVariable("id") Long id) {
     return mapper.toResponse(tripService.getById(id));
   }
 }

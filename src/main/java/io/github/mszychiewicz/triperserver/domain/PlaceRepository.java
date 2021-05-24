@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-interface TripRepository extends JpaRepository<Trip, Long> {
-  Trip save(Trip trip);
+interface PlaceRepository extends JpaRepository<Place, Long> {
+  Place save(Place place);
 
-  Optional<Trip> findById(Long id);
+  Optional<Place> findById(Long id);
 }
