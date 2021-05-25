@@ -3,11 +3,13 @@ package io.github.mszychiewicz.triperserver.api;
 import io.github.mszychiewicz.triperserver.api.request.AddressDto;
 import io.github.mszychiewicz.triperserver.api.request.CreateTripRequest;
 import io.github.mszychiewicz.triperserver.api.request.PlaceDto;
-import io.github.mszychiewicz.triperserver.api.response.TripResponse;
+import io.github.mszychiewicz.triperserver.api.response.CreateTripResponse;
+import io.github.mszychiewicz.triperserver.api.response.GetTripResponse;
 import io.github.mszychiewicz.triperserver.domain.Trip;
 import io.github.mszychiewicz.triperserver.domain.command.CreateTripCommand;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,8 +41,12 @@ class TripApiMapper {
         request.getSubLocality());
   }
 
-  public TripResponse toResponse(Trip trip) {
-    return new TripResponse(
+  public CreateTripResponse toResponse(UUID tripId) {
+    return new CreateTripResponse(tripId);
+  }
+
+  public GetTripResponse toResponse(Trip trip) {
+    return new GetTripResponse(
         trip.getId(),
         trip.getName());
   }

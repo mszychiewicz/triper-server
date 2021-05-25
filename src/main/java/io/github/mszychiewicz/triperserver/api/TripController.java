@@ -1,8 +1,8 @@
 package io.github.mszychiewicz.triperserver.api;
 
 import io.github.mszychiewicz.triperserver.api.request.CreateTripRequest;
-import io.github.mszychiewicz.triperserver.api.response.TripResponse;
-import io.github.mszychiewicz.triperserver.domain.Trip;
+import io.github.mszychiewicz.triperserver.api.response.CreateTripResponse;
+import io.github.mszychiewicz.triperserver.api.response.GetTripResponse;
 import io.github.mszychiewicz.triperserver.domain.TripService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,14 +25,17 @@ public class TripController {
 
   @PostMapping
   public @ResponseBody
-  TripResponse create(@RequestBody @Valid CreateTripRequest request) {
-    Trip trip = tripService.createTrip(mapper.toCommand(request));
-    return mapper.toResponse(trip);
+  CreateTripResponse create(@RequestBody @Valid CreateTripRequest request) {
+    return mapper.toResponse(
+        tripService.createTrip(mapper.toCommand(request))
+    );
   }
 
   @GetMapping("/{id}")
   public @ResponseBody
-  TripResponse getById(@PathVariable("id") Long id) {
-    return mapper.toResponse(tripService.getById(id));
+  GetTripResponse getById(@PathVariable("id") UUID id) {
+    return mapper.toResponse(
+        tripService.getById(id)
+    );
   }
 }

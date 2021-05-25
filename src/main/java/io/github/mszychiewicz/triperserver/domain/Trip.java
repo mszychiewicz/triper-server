@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,11 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Trip {
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private UUID id;
   private UUID deviceUuid;
   private String name;
-  @OneToMany
+  @OneToMany(cascade=CascadeType.ALL)
   private List<Place> places;
 
   public Trip(UUID deviceUuid, String name, List<Place> places) {

@@ -5,6 +5,8 @@ import io.github.mszychiewicz.triperserver.domain.exception.TripNotFoundExceptio
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class TripService {
@@ -13,12 +15,12 @@ public class TripService {
   private final TripRepository tripRepository;
   private final TripFactory tripFactory;
 
-  public Trip createTrip(CreateTripCommand command) {
+  public UUID createTrip(CreateTripCommand command) {
     Trip createdTrip = tripFactory.from(command);
-    return tripRepository.save(createdTrip);
+    return tripRepository.save(createdTrip).getId();
   }
 
-  public Trip getById(Long id) {
+  public Trip getById(UUID id) {
     return tripRepository.findById(id)
         .orElseThrow(() -> new TripNotFoundException(TRIP_NOT_FOUND_MESSAGE));
   }
