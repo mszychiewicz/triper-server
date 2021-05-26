@@ -5,6 +5,7 @@ import io.github.mszychiewicz.triperserver.domain.exception.TripNotFoundExceptio
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,5 +24,9 @@ public class TripService {
   public Trip getById(UUID id) {
     return tripRepository.findById(id)
         .orElseThrow(() -> new TripNotFoundException(TRIP_NOT_FOUND_MESSAGE));
+  }
+
+  public List<Trip> getByDeviceUuid(UUID deviceUuid) {
+    return tripRepository.findByDeviceUuid(deviceUuid);
   }
 }
