@@ -1,4 +1,4 @@
-package io.github.mszychiewicz.triperserver.domain;
+package io.github.mszychiewicz.triperserver.domain.place;
 
 import lombok.AccessLevel;
 import lombok.Getter;

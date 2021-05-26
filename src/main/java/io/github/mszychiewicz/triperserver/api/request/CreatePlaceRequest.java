@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlaceDto {
+public class CreatePlaceRequest {
   String name;
 
   @NotNull
@@ -20,5 +20,5 @@ public class PlaceDto {
   Double latitude;
 
   @Valid
-  AddressDto address;
+  CreateAddressRequest address;
 }

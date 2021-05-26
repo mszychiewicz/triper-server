@@ -1,4 +1,4 @@
-package io.github.mszychiewicz.triperserver.domain;
+package io.github.mszychiewicz.triperserver.domain.place;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

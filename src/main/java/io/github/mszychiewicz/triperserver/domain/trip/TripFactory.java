@@ -1,6 +1,8 @@
-package io.github.mszychiewicz.triperserver.domain;
+package io.github.mszychiewicz.triperserver.domain.trip;
 
 import io.github.mszychiewicz.triperserver.domain.command.CreateTripCommand;
+import io.github.mszychiewicz.triperserver.domain.place.Address;
+import io.github.mszychiewicz.triperserver.domain.place.Place;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

@@ -20,5 +20,5 @@ public class CreateTripRequest {
     String name;
 
     @Valid
-    List<PlaceDto> places;
+    List<CreatePlaceRequest> places;
 }

@@ -1,35 +1,35 @@
-package io.github.mszychiewicz.triperserver.domain;
+package io.github.mszychiewicz.triperserver.domain.place;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Trip {
+public class Place {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
-  private UUID deviceUuid;
   private String name;
-  @OneToMany(cascade=CascadeType.ALL)
-  private List<Place> places;
+  private Double longitude;
+  private Double latitude;
+  @Embedded
+  private Address address;
 
-  public Trip(UUID deviceUuid, String name, List<Place> places) {
-    this.deviceUuid = deviceUuid;
+  public Place(String name, Double longitude, Double latitude, Address address) {
     this.name = name;
-    this.places = places;
+    this.longitude = longitude;
+    this.latitude = latitude;
+    this.address = address;
   }
 }

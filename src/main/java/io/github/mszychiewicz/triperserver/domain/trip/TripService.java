@@ -1,4 +1,4 @@
-package io.github.mszychiewicz.triperserver.domain;
+package io.github.mszychiewicz.triperserver.domain.trip;
 
 import io.github.mszychiewicz.triperserver.domain.command.CreateTripCommand;
 import io.github.mszychiewicz.triperserver.domain.exception.TripNotFoundException;

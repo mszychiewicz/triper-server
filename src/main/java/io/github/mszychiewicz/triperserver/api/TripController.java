@@ -3,7 +3,7 @@ package io.github.mszychiewicz.triperserver.api;
 import io.github.mszychiewicz.triperserver.api.request.CreateTripRequest;
 import io.github.mszychiewicz.triperserver.api.response.CreateTripResponse;
 import io.github.mszychiewicz.triperserver.api.response.GetTripResponse;
-import io.github.mszychiewicz.triperserver.domain.TripService;
+import io.github.mszychiewicz.triperserver.domain.trip.TripService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
