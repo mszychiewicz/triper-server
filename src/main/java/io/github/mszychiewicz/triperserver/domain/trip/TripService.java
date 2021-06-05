@@ -27,6 +27,10 @@ public class TripService {
   }
 
   public List<Trip> getByDeviceUuid(UUID deviceUuid) {
-    return tripRepository.findByDeviceUuid(deviceUuid);
+    return tripRepository.findByDeviceUuidOrderByCreatedDesc(deviceUuid);
+  }
+
+  public List<Trip> getLatest() {
+    return tripRepository.findTop50ByOrderByCreatedDesc();
   }
 }

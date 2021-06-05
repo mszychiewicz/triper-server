@@ -13,5 +13,8 @@ interface TripRepository extends JpaRepository<Trip, UUID> {
 
   Optional<Trip> findById(UUID id);
 
-  List<Trip> findByDeviceUuid(UUID deviceUuid);
+  List<Trip> findByDeviceUuidOrderByCreatedDesc(UUID deviceUuid);
+
+  List<Trip> findTop50ByOrderByCreatedDesc();
 }
+

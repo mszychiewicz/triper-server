@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,12 @@ public class CreateTripRequest {
 
     @NotBlank
     String name;
+
+    @NotNull
+    Double estimatedTime;
+
+    @NotNull
+    Double distance;
 
     @Valid
     List<CreatePlaceRequest> places;

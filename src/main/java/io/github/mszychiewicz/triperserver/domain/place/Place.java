@@ -21,13 +21,15 @@ public class Place {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
   private String name;
+  private String note;
   private Double longitude;
   private Double latitude;
   @Embedded
   private Address address;
 
-  public Place(String name, Double longitude, Double latitude, Address address) {
+  public Place(String name, String note, Double longitude, Double latitude, Address address) {
     this.name = name;
+    this.note = note;
     this.longitude = longitude;
     this.latitude = latitude;
     this.address = address;

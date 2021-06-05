@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 public class CreatePlaceRequest {
   String name;
 
+  String note;
+
   @NotNull
   Double longitude;
 

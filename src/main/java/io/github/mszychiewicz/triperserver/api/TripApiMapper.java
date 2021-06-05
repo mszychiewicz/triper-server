@@ -6,6 +6,7 @@ import io.github.mszychiewicz.triperserver.api.request.CreatePlaceRequest;
 import io.github.mszychiewicz.triperserver.api.response.CreateTripResponse;
 import io.github.mszychiewicz.triperserver.api.response.GetAddressResponse;
 import io.github.mszychiewicz.triperserver.api.response.GetPlaceResponse;
+import io.github.mszychiewicz.triperserver.api.response.GetTripInfoResponse;
 import io.github.mszychiewicz.triperserver.api.response.GetTripResponse;
 import io.github.mszychiewicz.triperserver.domain.place.Address;
 import io.github.mszychiewicz.triperserver.domain.place.Place;
@@ -22,6 +23,8 @@ class TripApiMapper {
     return new CreateTripCommand(
         request.getDeviceUuid(),
         request.getName(),
+        request.getEstimatedTime(),
+        request.getDistance(),
         request.getPlaces().stream()
             .map(this::toCommand)
             .collect(Collectors.toUnmodifiableList()));
@@ -30,6 +33,7 @@ class TripApiMapper {
   private CreateTripCommand.Place toCommand(CreatePlaceRequest request) {
     return new CreateTripCommand.Place(
         request.getName(),
+        request.getNote(),
         request.getLongitude(),
         request.getLatitude(),
         toCommand(request.getAddress()));
@@ -52,7 +56,6 @@ class TripApiMapper {
   public GetTripResponse toResponse(Trip trip) {
     return new GetTripResponse(
         trip.getId(),
-        trip.getDeviceUuid(),
         trip.getName(),
         trip.getPlaces().stream()
             .map(this::toResponse)
@@ -75,5 +78,14 @@ class TripApiMapper {
         address.getPostalCode(),
         address.getCountry(),
         address.getSubLocality());
+  }
+
+  public GetTripInfoResponse toInfoResponse(Trip trip) {
+    return new GetTripInfoResponse(
+        trip.getId(),
+        trip.getName(),
+        trip.getPlaces().size(),
+        trip.getEstimatedTime(),
+        trip.getDistance());
   }
 }

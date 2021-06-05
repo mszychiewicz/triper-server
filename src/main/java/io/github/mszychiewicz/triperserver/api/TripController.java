@@ -2,6 +2,7 @@ package io.github.mszychiewicz.triperserver.api;
 
 import io.github.mszychiewicz.triperserver.api.request.CreateTripRequest;
 import io.github.mszychiewicz.triperserver.api.response.CreateTripResponse;
+import io.github.mszychiewicz.triperserver.api.response.GetTripInfoResponse;
 import io.github.mszychiewicz.triperserver.api.response.GetTripResponse;
 import io.github.mszychiewicz.triperserver.domain.trip.TripService;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -36,9 +38,11 @@ public class TripController {
 
   @GetMapping
   public @ResponseBody
-  List<GetTripResponse> getByDeviceUuid(@RequestParam UUID deviceUuid) {
-    return tripService.getByDeviceUuid(deviceUuid).stream()
-        .map(mapper::toResponse)
+  List<GetTripInfoResponse> getTrips(@RequestParam(required = false) Optional<UUID> deviceUuid) {
+    return deviceUuid.map(tripService::getByDeviceUuid)
+        .orElseGet(tripService::getLatest)
+        .stream()
+        .map(mapper::toInfoResponse)
         .collect(Collectors.toList());
   }
 

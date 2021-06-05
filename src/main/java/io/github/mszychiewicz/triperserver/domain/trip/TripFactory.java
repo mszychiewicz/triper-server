@@ -13,6 +13,8 @@ public class TripFactory {
     return new Trip(
         command.getDeviceUuid(),
         command.getName(),
+        command.getEstimatedTime(),
+        command.getDistance(),
         command.getPlaces().stream()
             .map(this::from)
             .collect(Collectors.toUnmodifiableList()));
@@ -21,6 +23,7 @@ public class TripFactory {
   private Place from(CreateTripCommand.Place command) {
     return new Place(
         command.getName(),
+        command.getNote(),
         command.getLongitude(),
         command.getLatitude(),
         from(command.getAddress()));

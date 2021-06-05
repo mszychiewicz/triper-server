@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,13 +25,23 @@ public class Trip {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
   private UUID deviceUuid;
+  private Instant created;
   private String name;
-  @OneToMany(cascade=CascadeType.ALL)
+  private Double estimatedTime;
+  private Double distance;
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Place> places;
 
-  public Trip(UUID deviceUuid, String name, List<Place> places) {
+  public Trip(UUID deviceUuid,
+              String name,
+              Double estimatedTime,
+              Double distance,
+              List<Place> places) {
     this.deviceUuid = deviceUuid;
+    this.created = Instant.now();
     this.name = name;
+    this.estimatedTime = estimatedTime;
+    this.distance = distance;
     this.places = places;
   }
 }

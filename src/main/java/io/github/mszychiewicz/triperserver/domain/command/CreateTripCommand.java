@@ -2,6 +2,7 @@ package io.github.mszychiewicz.triperserver.domain.command;
 
 import lombok.Value;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,11 +10,14 @@ import java.util.UUID;
 public class CreateTripCommand {
   UUID deviceUuid;
   String name;
+  Double estimatedTime;
+  Double distance;
   List<Place> places;
 
   @Value
   public static class Place {
     String name;
+    String note;
     Double longitude;
     Double latitude;
     Address address;
