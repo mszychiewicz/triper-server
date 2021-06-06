@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 public class GetPlaceResponse {
   String name;
 
+  String note;
+
   Double longitude;
 
   Double latitude;

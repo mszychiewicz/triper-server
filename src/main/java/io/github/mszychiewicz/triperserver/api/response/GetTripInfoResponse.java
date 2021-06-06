@@ -13,7 +13,7 @@ import java.util.UUID;
 public class GetTripInfoResponse {
   UUID id;
   String name;
-  Integer numberOfPlaces;
   Double estimatedTime;
   Double distance;
+  Integer numberOfPlaces;
 }

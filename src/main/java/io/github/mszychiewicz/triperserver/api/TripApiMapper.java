@@ -57,6 +57,8 @@ class TripApiMapper {
     return new GetTripResponse(
         trip.getId(),
         trip.getName(),
+        trip.getEstimatedTime(),
+        trip.getDistance(),
         trip.getPlaces().stream()
             .map(this::toResponse)
             .collect(Collectors.toUnmodifiableList()));
@@ -65,6 +67,7 @@ class TripApiMapper {
   private GetPlaceResponse toResponse(Place place) {
     return new GetPlaceResponse(
         place.getName(),
+        place.getNote(),
         place.getLongitude(),
         place.getLatitude(),
         toResponse(place.getAddress()));
@@ -84,8 +87,8 @@ class TripApiMapper {
     return new GetTripInfoResponse(
         trip.getId(),
         trip.getName(),
-        trip.getPlaces().size(),
         trip.getEstimatedTime(),
-        trip.getDistance());
+        trip.getDistance(),
+        trip.getPlaces().size());
   }
 }

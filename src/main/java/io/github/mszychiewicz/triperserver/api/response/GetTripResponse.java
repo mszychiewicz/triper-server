@@ -16,5 +16,7 @@ import java.util.UUID;
 public class GetTripResponse {
   UUID id;
   String name;
+  Double estimatedTime;
+  Double distance;
   List<GetPlaceResponse> places;
 }
